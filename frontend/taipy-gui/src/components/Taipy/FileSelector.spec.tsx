@@ -291,7 +291,7 @@ describe("FileSelector Component", () => {
         // Render HTML Document
         const { getByLabelText } = render(
             <TaipyContext.Provider value={{ state: INITIAL_STATE, dispatch: mockDispatch }}>
-                <FileSelector label="FileSelector" webkitdirectory={true} />
+                <FileSelector label="FileSelector" webkitdirectory="" />
             </TaipyContext.Provider>
         );
 
