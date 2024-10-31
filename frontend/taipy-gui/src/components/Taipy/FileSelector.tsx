@@ -74,7 +74,7 @@ const FileSelector = (props: FileSelectorProps) => {
         defaultLabel = "",
         updateVarName = "",
         multiple = false,
-        webkitdirectory = "",
+        webkitdirectory,
         extensions = ".csv,.xlsx",
         dropMessage = "Drop here to Upload",
         label,
