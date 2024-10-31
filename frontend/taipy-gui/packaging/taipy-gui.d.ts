@@ -162,6 +162,7 @@ export interface FileSelectorProps extends TaipyActiveProps {
     defaultLabel?: string;
     label?: string;
     multiple?: boolean;
+    webkitdirectory?: boolean;
     extensions?: string;
     dropMessage?: string;
     notify?: boolean;

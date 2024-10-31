@@ -990,6 +990,13 @@ class Gui:
         upload_data = request.form.get("upload_data", None)
         multiple = "multiple" in request.form and request.form["multiple"] == "True"
         file = request.files.get("blob", None)
+
+        print(f"Uploaded request: {request}")
+        print(f"Uploaded file properties: {file.__dict__}")
+        print(f"Uploaded upload_data: {upload_data}")
+        print(f"Uploaded multiple: {multiple}")
+        print(f"Uploaded blobs: {request.files.getlist("blob")}")
+        print(f"Uploaded files: {request.files.getlist("file")}")
         if not file:
             _warn("upload files: No file part")
             return ("upload files: No file part", 400)
