@@ -47,3 +47,15 @@ def test_file_selector_html(gui: Gui, test_client, helpers):
         'onAction="action"',
     ]
     helpers.test_control_html(gui, html_string, expected_list)
+
+
+# Testing folder support
+def test_file_selector_webkitdirectory_md(gui: Gui, test_client, helpers):
+    gui._bind_var_val("content", None)
+    md_string = '<|{content}|file_selector|webkitdirectory|>'
+    expected_list = [
+        "<FileSelector",
+        'updateVarName="tpec_TpExPr_content_TPMDL_0"',
+        'webkitdirectory="True"',
+    ]
+    helpers.test_control_md(gui, md_string, expected_list)
