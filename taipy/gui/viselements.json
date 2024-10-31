@@ -1228,6 +1228,12 @@
                         "doc": "If set to True, multiple files can be uploaded."
                     },
                     {
+                        "name": "webkitdirectory",
+                        "type": "bool",
+                        "default_value": "False",
+                        "doc": "If set to True, folders can be uploaded, preserving nested structures."
+                    },
+                    {
                         "name": "extensions",
                         "type": "str",
                         "default_value": "\".csv,.xlsx\"",
