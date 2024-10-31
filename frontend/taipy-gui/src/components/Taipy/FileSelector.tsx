@@ -40,6 +40,7 @@ interface FileSelectorProps extends TaipyActiveProps {
     defaultLabel?: string;
     label?: string;
     multiple?: boolean;
+    webkitdirectory?: boolean;
     extensions?: string;
     dropMessage?: string;
     notify?: boolean;
@@ -65,6 +66,7 @@ const FileSelector = (props: FileSelectorProps) => {
         defaultLabel = "",
         updateVarName = "",
         multiple = false,
+        webkitdirectory = false,
         extensions = ".csv,.xlsx",
         dropMessage = "Drop here to Upload",
         label,
@@ -194,6 +196,7 @@ const FileSelector = (props: FileSelectorProps) => {
                 type="file"
                 accept={extensions}
                 multiple={multiple}
+                webkitdirectory={webkitdirectory}
                 onChange={handleChange}
                 disabled={!active || upload}
             />

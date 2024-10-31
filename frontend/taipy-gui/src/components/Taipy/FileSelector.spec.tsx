@@ -21,6 +21,7 @@ import { TaipyContext } from "../../context/taipyContext";
 import { TaipyState, INITIAL_STATE } from "../../context/taipyReducers";
 import { uploadFile } from "../../workers/fileupload";
 
+
 jest.mock("../../workers/fileupload", () => ({
     uploadFile: jest.fn().mockResolvedValue("mocked response"), // returns a Promise that resolves to 'mocked response'
 }));
@@ -282,5 +283,44 @@ describe("FileSelector Component", () => {
 
         // Check if the dispatch function has not been called
         expect(mockDispatch).not.toHaveBeenCalled();
+    });
+
+    it("checks whether a folder can be uploaded", async () => {
+        const mockDispatch = jest.fn();
+
+        // Render HTML Document
+        const { getByLabelText } = render(
+            <TaipyContext.Provider value={{ state: INITIAL_STATE, dispatch: mockDispatch }}>
+                <FileSelector label="FileSelector" webkitdirectory={true} />
+            </TaipyContext.Provider>
+        );
+
+        // Simulate folder upload
+        const file = new File(["(~_~)"], "folder/boring.png", { type: "image/png" });
+        const file_nested = new File(["(⌐□_□)"], "folder/nested/chucknorris.png", { type: "image/png" });
+        const selectorElt = getByLabelText("FileSelector");
+        fireEvent.change(selectorElt, { target: { files: [file, file_nested] } });
+
+        // Wait for the upload to complete
+        await waitFor(() => expect(mockDispatch).toHaveBeenCalled());
+        
+        // Check for input element
+        const inputElt = selectorElt.parentElement?.parentElement?.querySelector("input");
+        expect(inputElt).toBeInTheDocument();
+
+        const file_list:string[] = [];
+        if (inputElt != null && inputElt.files != null){
+            for (const file_acc of inputElt.files) {
+                file_list.push(file_acc.webkitRelativePath);
+            };
+        };
+
+        // Check input list for right paths
+        expect(file_list.length).toBe(2);
+        expect(file_list.at(0)).toBe("folder/boring.png");
+        expect(file_list.at(1)).toBe("folder/nested/chucknorris.png");
+
+        // Check for call to uploadFile
+        expect(uploadFile).toHaveBeenCalledTimes(2);
     });
 });
