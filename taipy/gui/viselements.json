@@ -1229,8 +1229,8 @@
                     },
                     {
                         "name": "webkitdirectory",
-                        "type": "bool",
-                        "default_value": "False",
+                        "type": "str",
+                        "default_value": "None",
                         "doc": "If set to True, folders can be uploaded, preserving nested structures."
                     },
                     {
