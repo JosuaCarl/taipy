@@ -99,5 +99,5 @@ pickles
 
 
 
-#
+# Ignoring baseline npm modules
 node_modules/
