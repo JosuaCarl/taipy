@@ -990,7 +990,7 @@ class Gui:
         upload_data = request.form.get("upload_data", None)
         multiple = "multiple" in request.form and request.form["multiple"] == "True"
         file = request.files.get("blob", None)
-        path = request.form.get("path", None)
+        path = request.form.get("path", "")
 
         if not file:
             _warn("upload files: No file part")
@@ -1010,9 +1010,10 @@ class Gui:
                 suffix = f".part.{part}"
                 complete = part == total - 1
         if file:  # and allowed_file(file.filename)
-            # TODO: Add support for directory creation of nested structures
             if path:
-                upload_path = Path(os.path.join( self._get_config("upload_folder", tempfile.gettempdir()), os.path.dirname(path))).resolve()
+                upload_path = Path(os.path.join( self._get_config("upload_folder",
+                                                                  tempfile.gettempdir()),
+                                                 os.path.dirname(path))).resolve()
                 os.makedirs( upload_path, exist_ok=True )
             else:
                 upload_path = Path(self._get_config("upload_folder", tempfile.gettempdir())).resolve()

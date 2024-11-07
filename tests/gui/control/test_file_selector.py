@@ -50,7 +50,7 @@ def test_file_selector_html(gui: Gui, test_client, helpers):
 
 
 # Testing folder support
-def test_file_selector_webkitdirectory_md(gui: Gui, test_client, helpers):
+def test_file_selector_folder_md(gui: Gui, test_client, helpers):
     gui._bind_var_val("content", None)
     md_string = '<|{content}|file_selector|webkitdirectory|>'
     expected_list = [
