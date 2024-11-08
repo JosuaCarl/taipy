@@ -129,7 +129,7 @@ issue or PR if you're still interested in working on it.
 ### Python
 
 Taipy's repositories follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) and
-[PEP 484](https://www.python.org/dev/peps/pep-0484/) coding convention.
+[PEP 484](https://www.python.org/dev/peps/pep-0484/) coding convention. Gui variables need to be `snake_case` to be correctly converted into the `camelCase`, used for typescript variables.
 
 ### TypeScript
 
