@@ -35,12 +35,6 @@ import { uploadFile } from "../../workers/fileupload";
 import { SxProps } from "@mui/material";
 import { getComponentClassName } from "./TaipyStyle";
 
-//declare module "react" {
-//    interface InputHTMLAttributes<T> extends HTMLAttributes<T> {
-      // extends React's HTMLAttributes
-//      webkitdirectory?: string;
-//    }
-//};
 
 
 interface FileSelectorProps extends TaipyActiveProps {
@@ -81,7 +75,7 @@ const FileSelector = (props: FileSelectorProps) => {
         notify = true,
         withBorder = true,
     } = props;
-    const directoryProps = props.selectFolder ? {webkitdirectory: "", directory: "", mozdirectory: "", nwdirectory: ""}: undefined;
+    const directoryProps = selectFolder ? {webkitdirectory: "", directory: "", mozdirectory: "", nwdirectory: ""}:undefined;
     const [dropLabel, setDropLabel] = useState("");
     const [dropSx, setDropSx] = useState<SxProps | undefined>(defaultSx);
     const [upload, setUpload] = useState(false);

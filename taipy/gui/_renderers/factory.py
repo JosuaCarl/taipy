@@ -262,7 +262,7 @@ class _Factory:
                 ("on_action", PropertyType.function),
                 ("active", PropertyType.dynamic_boolean, True),
                 ("multiple", PropertyType.boolean, False),
-                ("selectFolder", PropertyType.boolean),
+                ("select_folder", PropertyType.boolean, False),
                 ("extensions",),
                 ("drop_message",),
                 ("hover_text", PropertyType.dynamic_string),

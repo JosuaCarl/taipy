@@ -1228,7 +1228,7 @@
                         "doc": "If set to True, multiple files can be uploaded."
                     },
                     {
-                        "name": "selectFolder",
+                        "name": "select_folder",
                         "type": "bool",
                         "default_value": "False",
                         "doc": "If set to True, folders can be uploaded, preserving nested structures."
