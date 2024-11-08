@@ -269,7 +269,7 @@ longer have to reinstall Taipy GUI before you try your code again.
 In python, you can handle this with:
 ```python
 import os
-os.environ["TAIPY_GUI_WEBAPP_PATH"] = "/path/to/your/taipy" + "/taipy/gui/webapp"
+os.environ["TAIPY_GUI_WEBAPP_PATH"] = os.path.normpath( "/path/to/your/taipy/taipy/gui/webapp" )
 ```
 or in bash with:
 ```bash
