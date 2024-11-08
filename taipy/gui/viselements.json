@@ -1228,9 +1228,9 @@
                         "doc": "If set to True, multiple files can be uploaded."
                     },
                     {
-                        "name": "webkitdirectory",
-                        "type": "str",
-                        "default_value": "None",
+                        "name": "selectFolder",
+                        "type": "bool",
+                        "default_value": "False",
                         "doc": "If set to True, folders can be uploaded, preserving nested structures."
                     },
                     {

@@ -291,7 +291,7 @@ describe("FileSelector Component", () => {
         // Render HTML Document
         const { getByLabelText } = render(
             <TaipyContext.Provider value={{ state: INITIAL_STATE, dispatch: mockDispatch }}>
-                <FileSelector label="FileSelector" webkitdirectory="" />
+                <FileSelector label="FileSelector" selectFolder />
             </TaipyContext.Provider>
         );
 
@@ -307,7 +307,10 @@ describe("FileSelector Component", () => {
         const inputElt = selectorElt.parentElement?.parentElement?.querySelector("input");
         expect(inputElt).toBeInTheDocument();
 
-        console.log(inputElt?.webkitdirectory);
-        expect(inputElt).toHaveAttribute("webkitdirectory");
+        // Check attributes of <input>
+        expect(inputElt?.getAttribute("directory")).toBe("");
+        expect(inputElt?.getAttribute("webkitdirectory")).toBe("");
+        expect(inputElt?.getAttribute("mozdirectory")).toBe("");
+        expect(inputElt?.getAttribute("nwdirectory")).toBe("");
     });
 });

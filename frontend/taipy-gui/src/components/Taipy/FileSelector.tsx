@@ -35,12 +35,12 @@ import { uploadFile } from "../../workers/fileupload";
 import { SxProps } from "@mui/material";
 import { getComponentClassName } from "./TaipyStyle";
 
-declare module "react" {
-    interface InputHTMLAttributes<T> extends HTMLAttributes<T> {
+//declare module "react" {
+//    interface InputHTMLAttributes<T> extends HTMLAttributes<T> {
       // extends React's HTMLAttributes
-      webkitdirectory?: string;
-    }
-};
+//      webkitdirectory?: string;
+//    }
+//};
 
 
 interface FileSelectorProps extends TaipyActiveProps {
@@ -48,7 +48,7 @@ interface FileSelectorProps extends TaipyActiveProps {
     defaultLabel?: string;
     label?: string;
     multiple?: boolean;
-    webkitdirectory?: string;
+    selectFolder?: boolean;
     extensions?: string;
     dropMessage?: string;
     notify?: boolean;
@@ -74,13 +74,14 @@ const FileSelector = (props: FileSelectorProps) => {
         defaultLabel = "",
         updateVarName = "",
         multiple = false,
-        webkitdirectory,
+        selectFolder = false,
         extensions = ".csv,.xlsx",
         dropMessage = "Drop here to Upload",
         label,
         notify = true,
         withBorder = true,
     } = props;
+    const directoryProps = props.selectFolder ? {webkitdirectory: "", directory: "", mozdirectory: "", nwdirectory: ""}: undefined;
     const [dropLabel, setDropLabel] = useState("");
     const [dropSx, setDropSx] = useState<SxProps | undefined>(defaultSx);
     const [upload, setUpload] = useState(false);
@@ -204,7 +205,7 @@ const FileSelector = (props: FileSelectorProps) => {
                 type="file"
                 accept={extensions}
                 multiple={multiple}
-                webkitdirectory={webkitdirectory}
+                {...directoryProps}
                 onChange={handleChange}
                 disabled={!active || upload}
             />
