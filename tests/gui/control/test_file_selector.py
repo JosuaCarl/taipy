@@ -52,10 +52,10 @@ def test_file_selector_html(gui: Gui, test_client, helpers):
 # Testing folder support
 def test_file_selector_folder_md(gui: Gui, test_client, helpers):
     gui._bind_var_val("content", None)
-    md_string = '<|{content}|file_selector|selectFolder|>'
+    md_string = '<|{content}|file_selector|select_folder|>'
     expected_list = [
         "<FileSelector",
         'updateVarName="tpec_TpExPr_content_TPMDL_0"',
-        'selectfolder={true}',
+        'selectFolder={true}',
     ]
     helpers.test_control_md(gui, md_string, expected_list)
