@@ -97,7 +97,3 @@ data_sources
 pipelines
 pickles
 
-
-
-# Ignoring baseline npm modules
-node_modules/
