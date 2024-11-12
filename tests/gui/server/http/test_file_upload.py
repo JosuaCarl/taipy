@@ -136,7 +136,6 @@ def test_file_upload_folder(gui: Gui, helpers):
     files = [(io.BytesIO(b"(^~^)"), "cutey.txt"), (io.BytesIO(b"(^~^)"), "cute_nested.txt")]
     folders = [ ["folder"], ["folder", "nested"] ]
     for file, folder in zip(files, folders):
-        print(folder)
         path = os.path.join(*folder, file[1])
         response = flask_client.post(
             f"/taipy-uploads?client_id={sid}",
