@@ -1018,16 +1018,17 @@ class Gui:
                 complete = part == total - 1
 
         # Extract upload path (when single file is selected, path="" does not change the path)
-        upload_root = Path(self._get_config( "upload_folder", tempfile.gettempdir() ))
-        upload_path = Path(os.path.join( upload_root, os.path.dirname(path))).resolve()
-        if upload_root not in list(upload_path.parents) + [upload_path]:
+        upload_root = os.path.abspath( self._get_config( "upload_folder", tempfile.gettempdir() ) )
+        upload_path = os.path.abspath( os.path.join( upload_root, os.path.dirname(path) ) )
+        if upload_path.startswith( upload_root ):
+            upload_path = Path( upload_path ).resolve()
+            os.makedirs( upload_path, exist_ok=True )
+            # Save file into upload_path directory
+            file_path = _get_non_existent_file_path(upload_path, secure_filename(file.filename))
+            file.save( os.path.join( upload_path, (file_path.name + suffix) ) )
+        else:
             _warn(f"upload files: Path {path} points outside of upload root.")
             return("upload files: Path part points outside of upload root.", 400)
-        
-        os.makedirs( upload_path, exist_ok=True )
-        # Save file into upload_path directory
-        file_path = _get_non_existent_file_path(upload_path, secure_filename(file.filename))
-        file.save( os.path.join( upload_path, (file_path.name + suffix) ) )
 
         if complete:
             if part > 0:
