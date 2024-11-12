@@ -1000,10 +1000,10 @@ class Gui:
         if file.filename == "":
             _warn("upload files: No selected file")
             return ("upload files: No selected file", 400)
-        
+
         # Path parsing and checks
         path = request.form.get("path", "")
-        if path == None:    # should at least be ""
+        if path is None:    # should at least be ""
             _warn("upload files: No path part")
             return ("upload files: No path part", 400)
         suffix = ""
@@ -1024,7 +1024,7 @@ class Gui:
         os.makedirs( upload_path, exist_ok=True )
         file_path = _get_non_existent_file_path(upload_path, secure_filename(file.filename))
 
-        # Save file to 
+        # Save file into upload_path directory
         file.save( os.path.join( upload_path, (file_path.name + suffix) ) )
 
         if complete:
