@@ -11,6 +11,7 @@
 
 import inspect
 import io
+import os
 import pathlib
 import tempfile
 
@@ -127,29 +128,20 @@ def test_file_upload_multiple(gui: Gui, helpers):
 
 
 def test_file_upload_folder(gui: Gui, helpers):
-    var_name = "varname"
     gui._set_frame(inspect.currentframe())
     gui.run(run_server=False, single_client=True)
     flask_client = gui._server.test_client()
-    with gui.get_flask_app().app_context():
-        gui._bind_var_val(var_name, None)
-    # Get the jsx once so that the page will be evaluated -> variable will be registered
+    
     sid = _DataScopes._GLOBAL_ID
-    file = (io.BytesIO(b"abcdef"), "test.jpg")
-    ret = flask_client.post(
-        f"/taipy-uploads?client_id={sid}", data={"var_name": var_name, "blob": file}, content_type="multipart/form-data"
-    )
-    assert ret.status_code == 200
-    created_file = pathlib.Path(gui._get_config("upload_folder", tempfile.gettempdir())) / "test.jpg"
-    assert created_file.exists()
-    file2 = (io.BytesIO(b"abcdef"), "test2.jpg")
-    ret = flask_client.post(
-        f"/taipy-uploads?client_id={sid}",
-        data={"var_name": var_name, "blob": file2, "multiple": "True"},
-        content_type="multipart/form-data",
-    )
-    assert ret.status_code == 200
-    created_file = pathlib.Path(gui._get_config("upload_folder", tempfile.gettempdir())) / "test2.jpg"
-    assert created_file.exists()
-    value = getattr(gui._bindings()._get_all_scopes()[sid], var_name)
-    assert len(value) == 2
+    files = [(io.BytesIO(b"(^~^)"), "cutey.txt"), (io.BytesIO(b"(^~^)"), "cute_nested.txt")]
+    folders = [ ["folder"], ["folder", "nested"] ]
+    for file, folder in zip(files, folders):
+        print(folder)
+        path = os.path.join(*folder, file[1])
+        response = flask_client.post(
+            f"/taipy-uploads?client_id={sid}",
+            data=dict(var_name="cute_varname", blob=file, path=path),
+            content_type="multipart/form-data"
+        )
+        assert response.status_code == 200
+        assert os.path.isfile( os.path.join( gui._get_config("upload_folder", tempfile.gettempdir()), path) )
