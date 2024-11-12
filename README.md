@@ -6,8 +6,7 @@
   </picture>
   </a>
 </div>
-
-<br>
+</br>
 <div align="center">
     <img 
         src="https://img.shields.io/github/license/Avaiga/taipy?style=plastic&color=ff371a&labelColor=1f1f1f" 
@@ -21,7 +20,6 @@
             src="https://img.shields.io/github/v/release/Avaiga/taipy?display_name=release&style=plastic&color=ff371a&labelColor=1f1f1f"
         ></a>
 </div>
-<br>
 <div align="center">
    <img 
       src="https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-ff371a?style=plastic&labelColor=1f1f1f" 
@@ -29,8 +27,6 @@
     />
   
 </div>
-<br>
-
 <div align="center">
     <a target="_blank" href="https://docs.taipy.io/en/latest/">
         <img 
@@ -51,8 +47,6 @@
             alt="Discord support" 
         ></a>
 </div>
-<br>
-
 <h1 align="center">
     Build Python Data & AI web applications
 </h1>
@@ -67,16 +61,6 @@ No more compromises on performance, customization, and scalability.
 <div align="center"> 
      <strong> Go beyond existing libraries  </strong>
 </div>
-
-<p align="center"><h4>
-    <br />
-    <a href="https://docs.taipy.io/en/latest/"><strong>📚 Explore the Docs </strong></a>
-    <br />
-    <a href="https://discord.com/invite/SJyz2VJGxV"><strong>  🫱🏼‍🫲🏼 Discord Support </strong></a>
-    <br />
-    <a href="https://docs.taipy.io/en/latest/gallery/"><strong> 👀 Demos & Examples </strong></a>
-</h4>
-  </p>
 
   ## Table of Contents
 
