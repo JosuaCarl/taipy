@@ -1003,9 +1003,6 @@ class Gui:
 
         # Path parsing and checks
         path = request.form.get("path", "")
-        if path is None:    # should at least be ""
-            _warn("upload files: No path part")
-            return ("upload files: No path part", 400)
         suffix = ""
         complete = True
         part = 0
