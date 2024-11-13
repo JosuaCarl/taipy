@@ -1228,10 +1228,10 @@
                         "doc": "If set to True, multiple files can be uploaded."
                     },
                     {
-                        "name": "select_folder",
-                        "type": "bool",
-                        "default_value": "False",
-                        "doc": "If set to True, folders can be uploaded, preserving nested structures."
+                        "name": "selection_type",
+                        "type": "str",
+                        "default_value": "file",
+                        "doc": "Can be set to 'file' (with 'f', '' aliases) or 'directory' (with 'd', 'dir', 'folder' aliases) to upload the respective element with preserved inner structure."
                     },
                     {
                         "name": "extensions",

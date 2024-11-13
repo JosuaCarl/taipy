@@ -285,13 +285,13 @@ describe("FileSelector Component", () => {
         expect(mockDispatch).not.toHaveBeenCalled();
     });
 
-    it("checks whether a folder can be uploaded", async () => {
+    it("checks the apprearance of folder upload options in input", async () => {
         const mockDispatch = jest.fn();
 
         // Render HTML Document
         const { getByLabelText } = render(
             <TaipyContext.Provider value={{ state: INITIAL_STATE, dispatch: mockDispatch }}>
-                <FileSelector label="FileSelector" selectFolder />
+                <FileSelector label="FileSelector" selectionType="dir" />
             </TaipyContext.Provider>
         );
 
@@ -312,5 +312,34 @@ describe("FileSelector Component", () => {
         expect(inputElt?.getAttribute("webkitdirectory")).toBe("");
         expect(inputElt?.getAttribute("mozdirectory")).toBe("");
         expect(inputElt?.getAttribute("nwdirectory")).toBe("");
+    });
+
+    it("checks the absence of folder upload options, when selection type is set accordingly", async () => {
+        const mockDispatch = jest.fn();
+
+        // Render HTML Document
+        const { getByLabelText } = render(
+            <TaipyContext.Provider value={{ state: INITIAL_STATE, dispatch: mockDispatch }}>
+                <FileSelector label="FileSelector" selectionType="" />
+            </TaipyContext.Provider>
+        );
+
+        // Simulate folder upload
+        const file = new Blob(["(o.O)"], { type: "" });
+        const selectorElt = getByLabelText("FileSelector");
+        fireEvent.change(selectorElt, { target: { files: [file] } });
+
+        // Wait for the upload to complete
+        await waitFor(() => expect(mockDispatch).toHaveBeenCalled());
+        
+        // Check for input element
+        const inputElt = selectorElt.parentElement?.parentElement?.querySelector("input");
+        expect(inputElt).toBeInTheDocument();
+
+        // Check attributes of <input>
+        expect(inputElt?.getAttributeNames()).not.toContain("directory");
+        expect(inputElt?.getAttributeNames()).not.toContain("webkitdirectory");
+        expect(inputElt?.getAttributeNames()).not.toContain("mozdirectory");
+        expect(inputElt?.getAttributeNames()).not.toContain("nwdirectory");
     });
 });

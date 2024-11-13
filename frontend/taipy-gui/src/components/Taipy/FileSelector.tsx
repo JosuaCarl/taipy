@@ -42,7 +42,7 @@ interface FileSelectorProps extends TaipyActiveProps {
     defaultLabel?: string;
     label?: string;
     multiple?: boolean;
-    selectFolder?: boolean;
+    selectionType?: string;
     extensions?: string;
     dropMessage?: string;
     notify?: boolean;
@@ -68,14 +68,14 @@ const FileSelector = (props: FileSelectorProps) => {
         defaultLabel = "",
         updateVarName = "",
         multiple = false,
-        selectFolder = false,
+        selectionType = "file",
         extensions = ".csv,.xlsx",
         dropMessage = "Drop here to Upload",
         label,
         notify = true,
         withBorder = true,
     } = props;
-    const directoryProps = selectFolder ? {webkitdirectory: "", directory: "", mozdirectory: "", nwdirectory: ""}:undefined;
+    const directoryProps = ["d", "dir", "directory", "folder"].includes(selectionType) ? {webkitdirectory: "", directory: "", mozdirectory: "", nwdirectory: ""} : undefined;
     const [dropLabel, setDropLabel] = useState("");
     const [dropSx, setDropSx] = useState<SxProps | undefined>(defaultSx);
     const [upload, setUpload] = useState(false);
