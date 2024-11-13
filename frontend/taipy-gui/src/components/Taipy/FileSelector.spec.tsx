@@ -285,7 +285,7 @@ describe("FileSelector Component", () => {
         expect(mockDispatch).not.toHaveBeenCalled();
     });
 
-    it("checks the apprearance of folder upload options in input", async () => {
+    it("checks the appearance of folder upload options in input", async () => {
         const mockDispatch = jest.fn();
 
         // Render HTML Document

@@ -1230,8 +1230,8 @@
                     {
                         "name": "selection_type",
                         "type": "str",
-                        "default_value": "file",
-                        "doc": "Can be set to 'file' (with 'f', '' aliases) or 'directory' (with 'd', 'dir', 'folder' aliases) to upload the respective element with preserved inner structure."
+                        "default_value": "\"file\"",
+                        "doc": "Can be set to \"file\" (with \"f\", \"\" aliases) or \"directory\" (with \"d\", \"dir\", \"folder\" aliases) to upload the respective element with preserved inner structure."
                     },
                     {
                         "name": "extensions",

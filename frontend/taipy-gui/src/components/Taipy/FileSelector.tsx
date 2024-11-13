@@ -75,7 +75,9 @@ const FileSelector = (props: FileSelectorProps) => {
         notify = true,
         withBorder = true,
     } = props;
-    const directoryProps = ["d", "dir", "directory", "folder"].includes(selectionType) ? {webkitdirectory: "", directory: "", mozdirectory: "", nwdirectory: ""} : undefined;
+    const directoryProps = ["d", "dir", "directory", "folder"].includes(selectionType?.toLowerCase()) ? 
+                           {webkitdirectory: "", directory: "", mozdirectory: "", nwdirectory: ""} : 
+                           undefined;
     const [dropLabel, setDropLabel] = useState("");
     const [dropSx, setDropSx] = useState<SxProps | undefined>(defaultSx);
     const [upload, setUpload] = useState(false);
